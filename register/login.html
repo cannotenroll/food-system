@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>登录</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">首页</a>
+        <a href="/login">登录</a>
+        <a href="/register">注册</a>
+    </div>
+    <h1>登录</h1>
+    <form method="POST" action="/login">
+        <label for="username">用户名:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="password">密码:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <button type="submit">登录</button>
+    </form>
+    {{if .Error}}
+        <p class="error-message">{{.Error}}</p>
+    {{end}}
+    <p class="register-prompt">还没有账号？ <a href="/register">注册</a></p>
+    <div class="footer">
+        <p>版权所有 &copy; 2023 - 食品安全追溯系统</p>
+        <p>联系我们: support@foodsystem.com</p>
+    </div>
+</body>
+</html>

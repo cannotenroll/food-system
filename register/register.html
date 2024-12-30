@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>注册</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        function validateForm() {
+            var username = document.forms["registerForm"]["username"].value;
+            var password = document.forms["registerForm"]["password"].value;
+            if (username == "") {
+                alert("用户名不能为空");
+                return false;
+            }
+            if (password.length < 6) {
+                alert("密码长度至少为 6 位");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">首页</a>
+        <a href="/login">登录</a>
+        <a href="/register">注册</a>
+    </div>
+    <h1>注册</h1>
+    <form name="registerForm" method="POST" action="/register" onsubmit="return validateForm()">
+        <label for="username">用户名:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">密码:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">注册</button>
+    </form>
+    {{if .Error}}
+        <p class="error-message">{{.Error}}</p>
+    {{end}}
+    <p class="login-prompt">已有账号？ <a href="/login">登录</a></p>
+    <div class="footer">
+        <p>版权所有 &copy; 2023 - 食品安全追溯系统</p>
+        <p>联系我们: support@foodsystem.com</p>
+    </div>
+</body>
+</html>

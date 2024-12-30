@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>用户管理</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">首页</a>
+        <a href="/admin">管理员面板</a>
+        <a href="/admin/users">用户管理</a>
+        <a href="/logout">退出登录</a>
+    </div>
+    <h1>用户管理</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>用户名</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{range .}}
+            <tr>
+                <td>{{.ID}}</td>
+                <td>{{.Username}}</td>
+                <td>
+                    <form method="POST" action="/admin/users/delete">
+                        <input type="hidden" name="user_id" value="{{.ID}}">
+                        <button type="submit">删除</button>
+                    </form>
+                    <form method="POST" action="/admin/users/resetpassword">
+                        <input type="hidden" name="user_id" value="{{.ID}}">
+                        <input type="password" name="new_password" placeholder="新密码" required>
+                        <button type="submit">重置密码</button>
+                    </form>
+                </td>
+            </tr>
+            {{end}}
+        </tbody>
+    </table>
+
+    <h2>添加用户</h2>
+    <form method="POST" action="/admin/users/add">
+        <input type="text" name="username" placeholder="用户名" required>
+        <input type="password" name="password" placeholder="密码" required>
+        <input type="checkbox" name="is_admin" value="1"> 管理员<br>
+        <button type="submit">添加用户</button>
+    </form>
+    <div class="footer">
+        <p>版权所有 &copy; 2023 - 食品安全追溯系统</p>
+        <p>联系我们: support@foodsystem.com</p>
+    </div>
+</body>
+</html> 

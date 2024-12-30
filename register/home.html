@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>首页</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">首页</a>
+        {{if .Authenticated}}
+            <a href="/admin">管理员面板</a>
+            <a href="/logout">退出登录</a>
+        {{else}}
+            <a href="/login">登录</a>
+            <a href="/register">注册</a>
+        {{end}}
+    </div>
+    <h1>首页</h1>
+    <p class="welcome-message">欢迎, {{if .Authenticated}}{{.Username}}{{else}}访客{{end}}!</p>
+    <div class="footer">
+        <p>版权所有 &copy; 2023 - 食品安全追溯系统</p>
+        <p>联系我们: support@foodsystem.com</p>
+    </div>
+</body>
+</html>
